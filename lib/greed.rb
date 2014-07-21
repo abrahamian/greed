@@ -1,12 +1,20 @@
 require 'pry'
+require 'player'
+require 'die'
+require 'turn'
+require 'score_calculator'
 
-class Greed
+class Game
 
-  attr_reader :players
+  attr_reader :players, :turns
 
-  def initialize(args)
-    @players = []
-    add_players(args[:players])
+  def initialize(args={})
+    @players = args.fetch(:players, default_players)
+    @turns = []
+  end
+
+  def default_players
+    [Player.new({:name=>"Player 1"}), Player.new({:name=>"Player 2"})]
   end
 
   def add_players(players)
@@ -19,23 +27,12 @@ class Greed
     players << player
   end
 
+  def new_turn(player)
+    turns << Turn.new({:player => player})
+  end
 
-end
-
-
-class Player
-
-  attr_accessor :name
-
-  def initialize(args)
-    @name = args[:name]
+  def current_turn
+    turns.last
   end
 
 end
-
-
-# mihran = Player.new({:name => "mihran"})
-# ellie = Player.new({:name => "ellie"})
-
-# Game = Greed.new({:players => [ellie,mihran]})
-
