@@ -66,6 +66,39 @@ describe Game do
         expect(greed.current_turn).to eq nil
       end
 
+      it "returns a turn object once the game has begun" do
+        greed.start_game
+        expect(greed.current_turn.class).to eq Turn
+      end
+
+      context "first turn" do
+
+        it "starts the game creating a turn for the first player in the list" do
+          greed.start_game
+          expect(greed.current_player.name).to eq "Player 1"
+        end
+
+      end
+
+      describe "next turn" do 
+
+        context "second turn" do
+          it "creates a turn for player 2" do
+            greed.start_game
+            greed.next_turn
+            expect(greed.current_player.name).to eq "Player 2"
+          end
+        end
+
+        context "all players have played a turn" do
+          it "starts at the top of the list again, creating a turn for player 1" do
+            greed.start_game
+            2.times {greed.next_turn}
+            expect(greed.current_player.name).to eq "Player 1"
+          end
+        end
+
+      end
     end
 
 

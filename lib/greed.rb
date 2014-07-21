@@ -14,6 +14,7 @@ class Game
   end
 
   def default_players
+
     [Player.new({:name=>"Player 1"}), Player.new({:name=>"Player 2"})]
   end
 
@@ -28,11 +29,32 @@ class Game
   end
 
   def new_turn(player)
-    turns << Turn.new({:player => player})
+    turn = Turn.new({:player => player})
+    turns << turn
   end
 
   def current_turn
     turns.last
+  end
+
+  def current_player
+    current_turn.player
+  end
+
+  def start_game
+    new_turn(players.first) if turns.empty?
+  end
+
+  def next_player
+    if current_player == players.last
+      players.first
+    else
+      players[players.index(current_player)+1]
+    end
+  end
+
+  def next_turn
+    new_turn(next_player)
   end
 
 end
