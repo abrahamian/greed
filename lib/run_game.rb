@@ -10,12 +10,11 @@ while greed.turns.length < 10
   greed.next_turn
 end
 
-for turn in greed.turns
-  puts turn
-end
+# for turn in greed.turns
+#   puts turn
+# end
 
-for player in greed.players
-  puts " #{player} scored #{ScoreCalculator.new(player.dice).calculate_score}"
-end
+# for player in greed.players
+#   puts " #{player} scored #{ScoreCalculator.new(player.dice).calculate_score}"
+# end
 
-binding.pry

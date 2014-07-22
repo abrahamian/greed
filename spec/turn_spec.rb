@@ -20,6 +20,22 @@ describe Turn do
 
   end
 
+  describe "dice" do
+
+    it "is an array of die objects" do
+      expect(turn.dice.any?{|element| element.class != Die}).to eq false
+    end
+
+    it "its dice are not the same as those passed to it" do
+      expect(turn.dice).to_not eq player.dice
+    end
+
+    it "its dice are copies of the player's dice" do
+      expect(turn.dice.map{|die| die.value}).to eq [1,2,3,4,5]
+    end
+
+  end
+
   describe "hand" do
 
     it "returns an array of the dice values" do

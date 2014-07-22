@@ -45,4 +45,13 @@ describe Player do
 
   end 
 
+
+  describe "to_s" do
+
+    it "returns the player's name" do
+      expect("#{mihran}").to eq "Mihran"
+    end
+
+  end
+
 end
