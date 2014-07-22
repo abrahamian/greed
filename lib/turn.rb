@@ -1,13 +1,21 @@
 class Turn
 
-  attr_reader :player, :hand
+  attr_reader :player, :hand, :dice
 
   def initialize(args)
     @player = args[:player]
-    @hand = handify(player.dice)
+    @dice = snapshot_of_dice(player.dice)
   end
 
-  def handify(dice)
+  def snapshot_of_dice(array)
+    snapshot = []
+    for die in array
+      snapshot.push(Die.new({:value => die.value}))
+    end
+    snapshot
+  end
+
+  def hand
     dice.map{|die| die.value}
   end
 

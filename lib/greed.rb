@@ -5,8 +5,7 @@ require_relative 'score_calculator'
 
 class Game
 
-  attr_reader :players
-  attr_accessor :turns
+  attr_reader :players, :turns
 
   def initialize(args={})
     @players = args.fetch(:players, defaults[:players])
@@ -30,7 +29,6 @@ class Game
   end
 
   def new_turn(player)
-    ###
     player.roll_all_dice
     turns << Turn.new({:player => player})
   end

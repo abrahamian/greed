@@ -18,4 +18,4 @@ for player in greed.players
   puts " #{player} scored #{ScoreCalculator.new(player.dice).calculate_score}"
 end
 
-
+binding.pry

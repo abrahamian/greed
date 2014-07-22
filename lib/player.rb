@@ -31,7 +31,7 @@ class Player
 
   def roll_die(index)
     dice[index].roll
-  end
+  end 
 
   def to_s
     name
