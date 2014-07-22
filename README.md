@@ -6,6 +6,6 @@ I will consider this approach to design successfully implemented if the classes 
 
 The `Game`, `Player` and `Die` objects are 'dumb': they know only as much as necessary about each other, and ideally, are modular enough to be re-used in other games - or at least, other dice games.
 
-The logic pertaining to how GREED is played should live in the `ScoreCalculator` class (which is adapted from my solution to the 'Scoring Project' Koan), and in the Turn class.
+The logic pertaining to how GREED is played should live in the `ScoreCalculator` class (which is adapted from my solution to the 'Scoring Project' Koan), and in the `Turn` class.
 
 I also make every effort to write my tests before writing the code, but though at times I feel a train of thought needs to be captured before it is forgotten, and the test was written afterwards.
