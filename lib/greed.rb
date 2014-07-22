@@ -1,21 +1,22 @@
-require 'pry'
-require 'player'
-require 'die'
-require 'turn'
-require 'score_calculator'
+require_relative 'die'
+require_relative 'player'
+require_relative 'turn'
+require_relative 'score_calculator'
 
 class Game
 
-  attr_reader :players, :turns
+  attr_reader :players
+  attr_accessor :turns
 
   def initialize(args={})
-    @players = args.fetch(:players, default_players)
+    @players = args.fetch(:players, defaults[:players])
     @turns = []
   end
 
-  def default_players
-
-    [Player.new({:name=>"Player 1"}), Player.new({:name=>"Player 2"})]
+  def defaults
+    {
+      :players => [Player.new({:name=>"Player 1"}), Player.new({:name=>"Player 2"})]
+    }
   end
 
   def add_players(players)
@@ -29,8 +30,9 @@ class Game
   end
 
   def new_turn(player)
-    turn = Turn.new({:player => player})
-    turns << turn
+    ###
+    player.roll_all_dice
+    turns << Turn.new({:player => player})
   end
 
   def current_turn
@@ -41,20 +43,20 @@ class Game
     current_turn.player
   end
 
-  def start_game
-    new_turn(players.first) if turns.empty?
-  end
-
   def next_player
     if current_player == players.last
       players.first
     else
-      players[players.index(current_player)+1]
+      players[players.index(current_player) + 1]
     end
   end
 
   def next_turn
     new_turn(next_player)
+  end
+
+  def start_game
+    new_turn(players.first) if turns.empty?
   end
 
 end

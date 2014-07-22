@@ -52,6 +52,3 @@ class ScoreCalculator
   end
 
 end
-
-# sc = ScoreCalculator.new([{:value => 1}, {:value => 2}, {:value => 2}, {:value => 2}, {:value => 2}])
-# binding.pry

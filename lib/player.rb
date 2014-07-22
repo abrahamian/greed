@@ -3,8 +3,8 @@ class Player
   attr_reader :name, :dice
 
   def initialize(args={})
-    @dice = []
-    create_five_dice
+    @dice = args.fetch(:dice, five_fresh_dice)
+    
     @name = args.fetch(:name, defaults[:name])
   end
 
@@ -14,20 +14,27 @@ class Player
     }
   end
 
-  def create_five_dice
+  def five_fresh_dice
+    fresh_dice = []
     for i in 0..4 do
-      dice[i] = Die.new
+      fresh_dice[i] = Die.new
     end
+    fresh_dice
   end
 
   def roll_all_dice
-    dice.each do |die|
+    for die in dice
       die.roll
     end
+    dice
   end
 
-  def roll_dice(index)
+  def roll_die(index)
     dice[index].roll
+  end
+
+  def to_s
+    name
   end
 
 end

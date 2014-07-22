@@ -97,11 +97,7 @@ describe Game do
             expect(greed.current_player.name).to eq "Player 1"
           end
         end
-
       end
     end
-
-
   end
-
 end
