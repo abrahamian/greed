@@ -1,12 +1,4 @@
-require 'pry'
-
-class ScoreCalculator
-
-  attr_reader :dice
-
-  def initialize(dice)
-    @dice = dice
-  end
+module ScoreCalculator
 
   def triple
     triple = nil

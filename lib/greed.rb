@@ -1,8 +1,8 @@
 require_relative 'die'
-require_relative 'turn'
 require_relative 'player'
 require_relative 'turn_taker'
 require_relative 'score_calculator'
+require_relative 'turn'
 
 class Game
 
@@ -30,8 +30,9 @@ class Game
   end
 
   def new_turn(player)
-    TurnTaker.new(player).roll_dice
-    turns << Turn.new({:player => player})
+    turn = Turn.new({:player => player})
+    turn.roll_dice
+    turns << turn.snapshot
   end
 
   def current_turn
