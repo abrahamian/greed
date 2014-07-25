@@ -10,5 +10,6 @@ The logic pertaining to how GREED is played should live in the `ScoreCalculator`
 
 I also make every effort to write my tests before writing the code, but though at times I feel a train of thought needs to be captured before it is forgotten, and the test was written afterwards.
 
+I found it useful to create a flowchart of a turn in Greed:
 
 ![alt tag](http://i.imgur.com/I9NIEFm.png)
