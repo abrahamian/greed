@@ -9,3 +9,6 @@ The `Game`, `Player` and `Die` objects are 'dumb': they know only as much as nec
 The logic pertaining to how GREED is played should live in the `ScoreCalculator` class (which is adapted from my solution to the 'Scoring Project' Koan), and in the `Turn` class.
 
 I also make every effort to write my tests before writing the code, but though at times I feel a train of thought needs to be captured before it is forgotten, and the test was written afterwards.
+
+
+![alt tag](http://i.imgur.com/I9NIEFm.png)
