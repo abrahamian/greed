@@ -5,18 +5,26 @@ class Player
 
   def initialize(args={})
     @name = args.fetch(:name, defaults[:name])
-    @dice = []
+    @dice = defaults[:dice]
     @score = 0
   end
 
   def defaults
     {
       :name => "Player",
+      :dice => five_fresh_dice
     }
   end
 
-  def roll(die)
-    die.roll
+  def five_fresh_dice
+    @dice = [Die.new, Die.new, Die.new, Die.new, Die.new]
+  end
+
+  def roll(dice)
+    for die in dice
+      die.roll
+    end
+    return dice
   end 
 
   def to_s

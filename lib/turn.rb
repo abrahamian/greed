@@ -1,21 +1,12 @@
 class Turn
 
-  include GreedTurnTaker
-  include ScoreCalculator
-
-  attr_reader :player, :dice
+  attr_reader :player, :dice, :successful_rolls
 
   def initialize(args)
     @player = args[:player]
-    @dice = args.fetch(:dice, player.dice)
-  end
-
-  def snapshot
-    dice_snapshot = []
-    for die in dice
-      dice_snapshot.push(Die.new({:value => die.value}))
-    end
-    return Turn.new({:player => player, :dice => dice_snapshot})
+    @dice = player.dice
+    @successful_rolls = []
+    turn_of_greed
   end
 
   def hand
@@ -27,3 +18,4 @@ class Turn
   end
 
 end
+

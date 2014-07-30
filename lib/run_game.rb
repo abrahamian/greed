@@ -1,14 +1,21 @@
 require 'pry'
-require_relative 'greed'
+require_relative 'die'
+require_relative 'player'
+require_relative 'score_calculator'
+require_relative 'greed_turn_taker'
+require_relative 'turn'
+require_relative 'greed_starter'
+require_relative 'game'
 
-greed = Game.new
-
-greed.start_game
-
-while greed.turns.length < 10
-  greed.next_turn
+class Game
+  include GreedStarter
 end
 
-puts greed.turns
+class Turn
+  include GreedTurnTaker
+end
+
+greed = Game.new
+greed.play_greed
 
 binding.pry
