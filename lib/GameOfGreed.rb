@@ -1,4 +1,11 @@
-module GreedStarter
+class GameOfGreed < Game
+
+  attr_reader :turns, :winner
+
+  def initialize(args={})
+    super(args)
+    @turns = []
+  end
 
   def play_greed
     new_turn(players.first)
@@ -9,6 +16,35 @@ module GreedStarter
     end
     set_winner
     congratulate_winner
+  end
+
+  def new_turn(player)
+    turn = TurnOfGreed.new({:player => player})
+    turns << turn
+  end
+  
+  def current_player
+    current_turn.player
+  end
+
+  def next_player
+    if current_player == players.last
+      players.first
+    else
+      players[players.index(current_player) + 1]
+    end
+  end
+
+  def next_turn
+    new_turn(next_player)
+  end
+
+  def start_game
+    new_turn(players.first) if turns.empty?
+  end
+
+  def current_turn
+    turns.last
   end
 
   def set_winner

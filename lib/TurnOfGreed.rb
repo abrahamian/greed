@@ -1,6 +1,14 @@
-module GreedTurnTaker
+class TurnOfGreed < Turn
 
-  def turn_of_greed
+  attr_reader :successful_rolls
+
+  def initialize(args)
+    super(args)
+    @successful_rolls = []
+    play
+  end
+
+  def play
 
     puts "#################################"
 

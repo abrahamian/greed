@@ -1,10 +1,9 @@
 class Game
 
-  attr_reader :players, :turns, :winner
+  attr_reader :players
 
   def initialize(args={})
     @players = args.fetch(:players, defaults[:players])
-    @turns = []
   end
 
   def defaults
@@ -21,35 +20,6 @@ class Game
 
   def add_player(player)
     players << player
-  end
-
-  def new_turn(player)
-    turn = Turn.new({:player => player})
-    turns << turn
-  end
-
-  def current_turn
-    turns.last
-  end
-
-  def current_player
-    current_turn.player
-  end
-
-  def next_player
-    if current_player == players.last
-      players.first
-    else
-      players[players.index(current_player) + 1]
-    end
-  end
-
-  def next_turn
-    new_turn(next_player)
-  end
-
-  def start_game
-    new_turn(players.first) if turns.empty?
   end
 
 end

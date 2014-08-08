@@ -1,12 +1,10 @@
 class Turn
 
-  attr_reader :player, :dice, :successful_rolls
+  attr_reader :player, :dice
 
   def initialize(args)
     @player = args[:player]
     @dice = player.dice
-    @successful_rolls = []
-    turn_of_greed
   end
 
   def hand
