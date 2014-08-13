@@ -5,6 +5,11 @@ class Turn
   def initialize(args)
     @player = args[:player]
     @dice = player.dice
+    post_initialize(args)
+  end
+
+  def post_initialize(args)
+    nil
   end
 
   def hand
@@ -17,4 +22,3 @@ class Turn
 
 
 end
-
