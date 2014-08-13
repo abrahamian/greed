@@ -12,13 +12,11 @@ class TurnOfGreed < Turn
     puts "#################################"
 
     if roll_all
-      while hot_dice?
-        player_wants_to_continue? or break
+      while hot_dice? and player_wants_to_continue?
         roll_all or break
       end
 
-      while non_scoring_dice_left?
-        player_wants_to_continue? or break
+      while non_scoring_dice_left? and player_wants_to_continue?
         roll_remaining or break
       end
     end
