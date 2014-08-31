@@ -20,4 +20,4 @@ greed = GameOfGreed.new
 
 greed.play_greed
 
-binding.pry
+# binding.pry
