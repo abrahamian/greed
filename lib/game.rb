@@ -5,6 +5,7 @@ class Game
   def initialize(args={})
     @players = args.fetch(:players, defaults[:players])
     @turns = []
+    post_initialize(args)
   end
 
   def defaults

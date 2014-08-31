@@ -1,16 +1,20 @@
 class GameOfGreed < Game
 
-  attr_reader :winner
+  attr_reader :winner, :ui
+
+  def post_initialize(args)
+    @ui = args.fetch(:ui, GreedUI.new)
+  end
 
   def play_greed
     new_turn(players.first)
     next_turn until someone_has_reached(3000)
-    puts "FINAL ROUND! FINAL ROUND! FINAL ROUND! FINAL ROUND! FINAL ROUND! FINAL ROUND!"
+    ui.final_round
     for player in players
       new_turn(player)
     end
     set_winner
-    congratulate_winner
+    ui.congratulate_winner(winner)
   end
 
   def next_turn
@@ -18,16 +22,12 @@ class GameOfGreed < Game
   end
 
   def new_turn(player)
-    turn = TurnOfGreed.new({:player => player})
+    turn = TurnOfGreed.new({:player => player, :ui=> ui})
     turns << turn
   end
 
   def set_winner
     @winner = players.max_by{|player| player.score}
-  end
-
-  def congratulate_winner
-    puts "Congratulations, #{winner}, with #{winner.score} points, you have won this game of Greed!"
   end
 
   def someone_has_reached(number)

@@ -1,9 +1,11 @@
 require 'pry'
+
 require_relative 'die'
 require_relative 'player'
 require_relative 'score_calculator'
 require_relative 'turn'
 require_relative 'turn_of_greed'
+require_relative 'greed_ui'
 require_relative 'game'
 require_relative 'game_of_greed'
 
