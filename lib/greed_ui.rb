@@ -1,11 +1,13 @@
 class GreedUI
 
   def spacer
-    puts "#################################"
+    puts "###############################################"
   end
 
   def congratulate_winner(winner)
+    3.times {spacer}
     puts "Congratulations, #{winner}, with #{winner.score} points, you have won this game of Greed!"
+    3.times {spacer}
   end
 
   def final_round

@@ -1,39 +1,41 @@
 class TurnOfGreed < Turn
-
   attr_reader :successful_rolls, :ui
 
   def post_initialize(args)
     @ui = args[:ui]
     @successful_rolls = []
+    @dice = player.dice = five_fresh_dice
+    spacer
     play
   end
 
   def play
-    
     if roll_all
-      while hot_dice? and player_wants_to_continue?
-        roll_all or break
-      end
-
-      while non_scoring_dice_left? and player_wants_to_continue?
-        roll_remaining or break
-      end
+      hot_dice_loop
+      remaining_dice_loop
     end
-
-    if cumulative_score > 0 && (player.score + cumulative_score) >= 300
-      player.score += cumulative_score
-      ui.end_turn_with_cumulative_score(player, cumulative_score)
-    else
-      ui.end_turn_with_no_added_points(player)
-    end
-
+    player_can_score_points? ? end_turn_with_cumulative_score : end_turn_with_no_added_points
   end
+
+  def hot_dice_loop
+    while hot_dice? and player_wants_to_continue?
+      roll_all or break
+    end
+  end
+
+  def remaining_dice_loop
+    while non_scoring_dice_left? and player_wants_to_continue?
+      roll_remaining or break
+    end
+  end
+
+  private
 
   def roll_all
     player.roll(dice)
     if current_score > 0
       successful_rolls.push(current_score)
-      ui.prompt_player(player, current_calc)
+      prompt_player(current_calc)
       true
     else
       end_turn_with_nothing(dice)
@@ -52,6 +54,10 @@ class TurnOfGreed < Turn
       end_turn_with_nothing(just_rolled_dice)
       false
     end
+  end
+
+  def five_fresh_dice
+    [Die.new, Die.new, Die.new, Die.new, Die.new]
   end
 
   def cumulative_score
@@ -74,13 +80,33 @@ class TurnOfGreed < Turn
     current_calc.score
   end
 
+  def player_can_score_points?
+    cumulative_score > 0 && (player.score + cumulative_score) >= 300
+  end
+
   def player_wants_to_continue?
     ui.player_wants_to_continue?(player)
   end
 
   def end_turn_with_nothing(ary)
-    ui.end_turn_with_nothing(player, ary)
     successful_rolls.clear
+    ui.end_turn_with_nothing(player, ary)
   end
   
+  def end_turn_with_cumulative_score
+    player.score += cumulative_score
+    ui.end_turn_with_cumulative_score(player, cumulative_score)
+  end
+
+  def end_turn_with_no_added_points
+    ui.end_turn_with_no_added_points(player)
+  end
+
+  def prompt_player(calc)
+    ui.prompt_player(player, calc)
+  end
+
+  def spacer
+    ui.spacer
+  end
 end

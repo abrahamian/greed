@@ -1,7 +1,7 @@
 class Player
 
-  attr_reader :name, :dice
-  attr_accessor :score
+  attr_reader :name
+  attr_accessor :score, :dice
 
   def initialize(args={})
     @name = args.fetch(:name, defaults[:name])
@@ -12,12 +12,8 @@ class Player
   def defaults
     {
       :name => "Player",
-      :dice => five_fresh_dice
+      :dice => []
     }
-  end
-
-  def five_fresh_dice
-    @dice = [Die.new, Die.new, Die.new, Die.new, Die.new]
   end
 
   def roll(dice)

@@ -4,7 +4,6 @@ class Turn
 
   def initialize(args)
     @player = args[:player]
-    @dice = player.dice
     post_initialize(args)
   end
 

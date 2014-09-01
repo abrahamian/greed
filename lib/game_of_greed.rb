@@ -9,12 +9,12 @@ class GameOfGreed < Game
   def play_greed
     new_turn(players.first)
     next_turn until someone_has_reached(3000)
-    ui.final_round
+    final_round
     for player in players
       new_turn(player)
     end
     set_winner
-    ui.congratulate_winner(winner)
+    congratulate_winner
   end
 
   def next_turn
@@ -26,6 +26,8 @@ class GameOfGreed < Game
     turns << turn
   end
 
+  private
+
   def set_winner
     @winner = players.max_by{|player| player.score}
   end
@@ -33,5 +35,14 @@ class GameOfGreed < Game
   def someone_has_reached(number)
     players.any?{|player| player.score >= number}
   end
+
+  def final_round
+    ui.final_round
+  end
+
+  def congratulate_winner
+    ui.congratulate_winner(winner)
+  end
+
 
 end
