@@ -32,7 +32,6 @@ class ScoreCalculator
     (dice.select{|die| die.value == triple_value}).first(3)
   end
 
-
   def non_triple_scoring_dice
     scoring_dice - triple_dice
   end
