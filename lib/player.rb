@@ -5,7 +5,7 @@ class Player
 
   def initialize(args={})
     @name = args.fetch(:name, defaults[:name])
-    @dice = defaults[:dice]
+    @dice = args.fetch(:dice, defaults[:dice])
     @score = 0
   end
 
