@@ -9,22 +9,24 @@ class Player
     @score = 0
   end
 
+  def roll(dice)
+    for die in dice
+      die.roll
+    end
+    dice
+  end 
+
+  def to_s
+    name
+  end
+
+  private
+
   def defaults
     {
       :name => "Player",
       :dice => []
     }
-  end
-
-  def roll(dice)
-    for die in dice
-      die.roll
-    end
-    return dice
-  end 
-
-  def to_s
-    name
   end
 
 end
