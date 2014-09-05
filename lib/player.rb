@@ -13,7 +13,6 @@ class Player
     for die in args
       die.roll
     end
-    dice
   end 
 
   def to_s
