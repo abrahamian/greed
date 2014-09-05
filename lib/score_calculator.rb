@@ -23,7 +23,7 @@ class ScoreCalculator
   def triple_value
     v = 0    
     for i in 1..6
-      v = i if dice.count{|die| die.value == i} > 3
+      v = i if dice.count{|die| die.value == i} >= 3
     end
     return v
   end
