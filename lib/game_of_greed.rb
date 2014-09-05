@@ -23,6 +23,7 @@ class GameOfGreed < Game
 
   def new_turn(player)
     turn = TurnOfGreed.new({:player => player, :ui=> ui})
+    turn.play
     turns << turn
   end
 

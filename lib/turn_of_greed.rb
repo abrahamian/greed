@@ -1,12 +1,11 @@
 class TurnOfGreed < Turn
-  attr_reader :successful_rolls, :ui
+  attr_reader :successful_rolls, :ui, :dice
 
   def post_initialize(args)
     @ui = args[:ui]
     @successful_rolls = []
     @dice = player.dice = five_fresh_dice
     spacer
-    play
   end
 
   def play
@@ -16,6 +15,8 @@ class TurnOfGreed < Turn
     end
     player_can_score_points? ? end_turn_with_cumulative_score : end_turn_with_no_added_points
   end
+
+  private
 
   def hot_dice_loop
     while hot_dice? and player_wants_to_continue?
@@ -28,8 +29,6 @@ class TurnOfGreed < Turn
       roll_remaining or break
     end
   end
-
-  private
 
   def roll_all
     player.roll(dice)
