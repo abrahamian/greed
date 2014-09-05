@@ -6,6 +6,20 @@ class ScoreCalculator
     @dice = dice
   end
 
+  def score
+    score_from_triple_dice + score_from_non_triple_scoring_dice
+  end
+
+  def scoring_dice
+    dice.select{|die| triple_dice.include?(die) || [1,5].include?(die.value)}
+  end
+
+  def non_scoring_dice
+    dice - scoring_dice
+  end
+
+  private
+
   def triple_value
     v = 0    
     for i in 1..6
@@ -18,16 +32,9 @@ class ScoreCalculator
     (dice.select{|die| die.value == triple_value}).first(3)
   end
 
-  def scoring_dice
-    dice.select{|die| triple_dice.include?(die) || [1,5].include?(die.value)}
-  end
 
   def non_triple_scoring_dice
     scoring_dice - triple_dice
-  end
-
-  def non_scoring_dice
-    dice - scoring_dice
   end
 
   def score_from_triple_dice
@@ -41,10 +48,6 @@ class ScoreCalculator
       x+= 50 if die.value == 5
     end
     x
-  end
-
-  def score
-    score_from_triple_dice + score_from_non_triple_scoring_dice
   end
 
 end
