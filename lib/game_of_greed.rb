@@ -1,9 +1,9 @@
 class GameOfGreed < Game
 
-  attr_reader :winner, :ui
+  attr_reader :winner
 
   def post_initialize(args)
-    @ui = args.fetch(:ui, GreedUI.new)
+    @ui = GreedUI.new
   end
 
   def play_greed
@@ -21,10 +21,18 @@ class GameOfGreed < Game
     new_turn(next_player)
   end
 
+  def next_player
+    if current_player == players.last
+      players.first
+    else
+      players[players.index(current_player) + 1]
+    end
+  end
+
   def new_turn(player)
     turn = TurnOfGreed.new({:player => player, :ui=> ui})
-    turn.play
     turns << turn
+    turn.play
   end
 
   private
