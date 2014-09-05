@@ -9,8 +9,8 @@ class Player
     @score = 0
   end
 
-  def roll(dice)
-    for die in dice
+  def roll(args)
+    for die in args
       die.roll
     end
     dice
