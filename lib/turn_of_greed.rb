@@ -47,7 +47,7 @@ class TurnOfGreed < Turn
     roll_calc = ScoreCalculator.new(just_rolled_dice)
     if roll_calc.score > 0 
       successful_rolls << roll_calc.score
-      ui.prompt_player(player, roll_calc)
+      prompt_player(roll_calc)
       true
     else
       end_turn_with_nothing(just_rolled_dice)
