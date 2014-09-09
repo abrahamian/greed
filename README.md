@@ -1,14 +1,29 @@
-My implementation of the **GREED** game, for extra credit in **Ruby Koans**.
+# GREED
 
-This game is played in the Terminal.
+### My implementation of the *Greed* dice game, for extra credit in *Ruby Koans*.
 
-My aim is to make my implementation follow Sandi Metz's examples and adhere to the guidelines laid out in *Practical Object Oriented Design in Ruby.*
+This game is played in the Terminal, and is initialized from inside the repository by running:
 
-I will consider this approach to design successfully implemented if the classes are **as decoupled as possible** from each other.
+` ruby lib/run_game.rb`
 
-The `Game`, `Player` and `Die` and `Turn` classes are 'dumb': they know only as much as necessary about each other, and ideally, are modular enough to be re-used in other games - or at least, other dice games.
+The aim in this implementation was to follow Sandi Metz's examples and guidelines (laid out in her excellent book, *Practical Object Oriented Design in Ruby*), as closely as possible.
 
-The logic pertaining to how GREED is played should live in the `GreedStarter` module (which extends the `Game` class), the `TurnTaker` module (which extends the `Turn` class), with calculations provided by the `ScoreCalculator` class (which is adapted from my solution to the 'Scoring Project' Koan).
+A guiding principle of Object Oriented Design is that a program made up of objects, which are **as decoupled from each other as possible** costs less to change.
+
+With this in mind, the game of Greed is broken down into many classes, all of which are designed to know only as much as necessary about each other:
+
+* the `Die`, `Player`, `Turn` and `Game` classes, should, ideally, be re-useable in other games (or at least other dice games); 
+* the `TurnOfGreed` and `GameOfGreed` classes, inheriting from `Turn` and `Game`,respectively, bring Greed-specific rules to the program while honoring their super-classes' interfaces; 
+* the `ScoreCalculator` class encapsulates Greed-specific methods to which dice do or don't score points, and how much a hand is worth; 
+* the `GreedUI` object contains all prompts to the user, printed into the terminal. 
+
+The tests, too, take a Sandi Metz-inspired approach in their minimalism - 
+only incoming query and command messages are tested using assertions about what they 
+return; outgoing command messages are tested by asserting that they are received; private methods are not tested - and their modularity (using mocks where appropriate to write loosely coupled tests).
+
+I found it useful to create a flowchart of how a turn unfolds in a game of Greed:
+
+![alt tag](http://i.imgur.com/I9NIEFm.png)
 
 The game's rules, as set out in **Ruby Koans** :
 
@@ -78,7 +93,3 @@ The game's rules, as set out in **Ruby Koans** :
 	Greed is described on Wikipedia at
 	http://en.wikipedia.org/wiki/Greed_(dice_game), however the rules are
 	a bit different from the rules given here.
-
-I found it useful to create a flowchart of a turn in Greed:
-
-![alt tag](http://i.imgur.com/I9NIEFm.png)
