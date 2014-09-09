@@ -22,7 +22,7 @@ class Game
 
   def defaults
     {
-      :players => [Player.new({:name=>"Player 1"}), Player.new({:name=>"Player 2"})]
+      :players => []
     }
   end
 

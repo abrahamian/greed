@@ -37,6 +37,10 @@ class GameOfGreed < Game
 
   private
 
+  def defaults
+    {players: [Player.new({:name=>"Player 1"}), Player.new({:name=>"Player 2"})]}
+  end
+
   def set_winner
     @winner = players.max_by{|player| player.score}
   end
