@@ -14,7 +14,7 @@ With this in mind, the game of Greed is broken down into many classes, all of wh
 
 * the `Die`, `Player`, `Turn` and `Game` classes, should, ideally, be re-useable in other games (or at least other dice games); 
 * the `TurnOfGreed` and `GameOfGreed` classes, inheriting from `Turn` and `Game`,respectively, bring Greed-specific rules to the program while honoring their super-classes' interfaces; 
-* the `ScoreCalculator` class encapsulates Greed-specific methods to which dice do or don't score points, and how much a hand is worth; 
+* the `ScoreCalculator` class, instantiated upon each roll of dice, encapsulates Greed-specific information as to which dice do or don't score points, and how many points a roll is worth; 
 * the `GreedUI` object contains all prompts to the user, printed into the terminal. 
 
 The tests, too, take a Sandi Metz-inspired approach in their minimalism - 
