@@ -1,12 +1,12 @@
 # GREED
 
-### My implementation of the *Greed* dice game, for extra credit in *Ruby Koans*.
+### My implementation of the *Greed* dice game, for extra credit in *[Ruby Koans](https://github.com/neo/ruby_koans)*.
 
 This game is played in the Terminal, and is initialized from inside the repository by running:
 
 ` ruby lib/run_game.rb`
 
-The aim in this implementation was to follow Sandi Metz's examples and guidelines (laid out in her excellent book, *Practical Object Oriented Design in Ruby*), as closely as possible.
+The aim in this implementation was to follow [Sandi Metz](https://github.com/skmetz "Sandi Metz's GitHub")'s examples and guidelines (laid out in her excellent book, *[Practical Object Oriented Design in Ruby](http://www.poodr.com/)*), as closely as possible.
 
 A guiding principle of Object Oriented Design is that a program made up of objects, which are **as decoupled from each other as possible** costs less to change.
 
@@ -21,11 +21,11 @@ The tests, too, take a Sandi Metz-inspired approach in their minimalism -
 only incoming query and command messages are tested using assertions about what they 
 return; outgoing command messages are tested by asserting that they are received; private methods are not tested - and their modularity (using mocks where appropriate to write loosely coupled tests).
 
-I found it useful to create a flowchart of how a turn unfolds in a game of Greed:
+I found it useful to create a **flowchart** of how a turn unfolds in a game of Greed:
 
 ![alt tag](http://i.imgur.com/I9NIEFm.png)
 
-The game's rules, as set out in **Ruby Koans** :
+The game's rules, [as set out in **Ruby Koans**](https://github.com/neo/ruby_koans/blob/master/src/GREED_RULES.txt) :
 
 	= Playing Greed
 	
