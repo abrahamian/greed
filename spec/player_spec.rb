@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'rspec/mocks'
 require_relative '../lib/player'
 
 describe Player do

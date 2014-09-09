@@ -7,7 +7,6 @@ class Turn
     post_initialize(args)
   end
 
-
   private
   
   def post_initialize(args)
