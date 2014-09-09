@@ -36,7 +36,7 @@ class GreedUI
   end
 
   def end_turn_with_nothing(player, ary)
-    puts " #{player}, your last roll was #{ary.map{|die| die.value}}, worth zero points. you lose all points and skip this turn."
+    puts " #{player}, your last roll was #{ary.map{|die| die.value}}, worth zero points. you lose all points from this turn."
   end
 
 end
